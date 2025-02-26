@@ -1,33 +1,7 @@
 version: '3.8'
 
 services:
-    # APLIKAČNÍ KONTEJNER
-    app:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        # container_name: laravel_app
-        # Laravel poběží na 8000
-        ports:
-            - 8000:80
-        # Připojení k db
-        depends_on:
-            - db_procorp
-        # Sdílíme celý projekt do /var/www/html
-        volumes:
-            - .:/var/www/html
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        # container_name: laravel_phpmyadmin
-        depends_on:
-            - db_procorp
-        environment:
-            PMA_HOST: db_procorp     # jméno služby "db"
-            PMA_USER: root  # musí sedět s MySQL uživatelem
-            PMA_PASSWORD: root  # heslo
-        ports:
-            - 8080:80
-    # DATABÁZOVÝ KONTEJNER
+    # KONTEJNER
     db_procorp:
         image: mysql:8
         # container_name: laravel_db
